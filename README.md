@@ -1,34 +1,15 @@
-# MiniJava
-Mini-Java is a subset of Java. MiniJava compiler implement a compiler for the Mini-java
-programming language.
-
-# Rules
-```
-Goal --> Source EOF
-Source --> ClassDeclarations MainClass
-MainClass --> class Identifier { public static void main() { VarDeclarations Statements}}
-ClassDeclarations --> ClassDeclaration ClassDeclarations | lambda
-ClassDeclaration --> class Identifier Extension { FieldDeclarations MethodDeclarations }
-Extension --> extends Identifier | lambda
-FieldDeclarations --> FieldDeclaration FieldDeclarations | lambda
-FieldDeclaration --> static Type Identifier ;
-VarDeclarations --> VarDeclaration VarDeclarations | lambda
-VarDeclaration --> Type Identifier ;
-MethodDeclarations --> MethodDeclaration MethodDeclarations | lambda
-MethodDeclaration --> public static Type Identifier ( Parameters ) { VarDeclarations Statements return GenExpression ; }
-Parameters --> Type Identifier Parameter | lambda
-Parameter --> , Type Identifier Parameter | lambda
-Type --> boolean | int
-Statements --> Statements Statement | lambda
-Statement --> { Statements } | if ( GenExpression ) Statement else Statement | while ( GenExpression ) Statement | System.out.println ( GenExpression ) ; | Identifier = GenExpression ;
-GenExpression --> Expression | RelExpression
-Expression --> Expression + Term | Expression - Term | Term
-Term --> Term * Factor | Factor
-Factor --> ( Expression ) | Identifier | Identifier . Identifier | Identifier . Identifier ( Arguments ) | true | false | Integer
-RelExpression --> RelExpression && RelTerm | RelTerm
-RelTerm --> Expression == Expression | Expression < Expression
-Arguments --> GenExpression Argument | lambda
-Argument --> , GenExpression Argument | lambda
-Identifier --> <IDENTIFIER_LITERAL>
-Integer --> <INTEGER_LITERAL>
-```
+# پاسخ سوالات انتهای گزارش:
+## 1.هر یک از مفاهیم زیر را در حد یک خط توضیح دهید.
+- کد تمیز: حالتی است که کد پروژه موردنظر دارای قرض فنی نبوده، تعداد کلاس زیاد نباشد و فهمیدن کد آسان باش. همچنین تمام خواسته های پروژه برآورده شود.
+- بدهی فنی: حالتی است که برای اضافه کردن ویژگی های جدید به برنامه تست ننوشته و نکات کد تمیز را در نظر نگیریم و صرفا به پیشرفت ظاهری پروژه دقت کنیم.
+- بوی بد: حالتی است که کد پروژه نامنظم بوده و از هیچکدام از الگو های طراحی پیروی نکند، کد تمیز زده نشود و پروژه غیرقابل استفاده شود.
+## 2.طبق دسته‌بندی وب‌سایت refactoring.guru، بوهای بد کد به پنج دسته تقسیم می‌شوند. در مورد هر کدام از این پنج دسته توضیح مختصری دهید.
+- دسته bloator: حالتی است که کد دارای کلاس ها، متود ها و کد های بزرگی است که استفاده و کارکردن با آن سخت و غیرقابل فهم باشد. اینکار معمولا در ابتدا مشکلی ایجاد نمی کند اما بیشتر شدن این ویژگی پروژه را مختل می کند.
+- دسته Object-Orientation Abusers: عدم پیروی یا پیاده سازی غلط از قوانین OOP.
+- دسته change preventers: حالتی است که برای تغییر یک قسمت از کد لازم باشد که قسمت های دیگر برنامه را نیز تغییر دهیم.
+- دسته Dispensables: وجود قسمت های غیرضروری و اضافی در کد که وجودشان فقط پروژه را کثیف و پیچیده تر می کند.
+- دسته Couplers: حالتی است که بین کلاس های پروژه وابستگی بالایی وجود دارد و ارتباطات پیچیده است.
+## 3.یکی از انواع بوهای بد، Lazy Class است.
+- در دسته Dispensables.
+- قسمت هایی از کلاس را که استفاده زیادی از آن ها نمی شود به صورت inline class در بیاوریم و همچنین کلاس هایی که کارایی مشابهی دارند را ادغام کنیم.
+- در حالتی که ویژگی ها و کد های اضافی کلاس مسیر آینده و نحوه پیشرفت پروژه را مشخص می کندد و می دانیم در آینده به آن ها نیاز داریم، آن ها را نادیده می گیریم.
